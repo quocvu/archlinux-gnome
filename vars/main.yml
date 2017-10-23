@@ -1,0 +1,16 @@
+---
+# vars file for dev-gnome-archlinux
+
+gnome_settings:
+  - { schema: org.gnome.desktop.interface, key: gtk-theme, value: Arc-Dark }
+  - { schema: org.gnome.desktop.interface, key: toolbar-icons-size, value: large }
+  - { schema: org.gnome.desktop.interface, key: icon-theme, value: Numix }
+  - { schema: org.gnome.desktop.interface, key: clock-show-seconds, value: 'false' }
+  - { schema: org.gnome.desktop.interface, key: enable-animations, value: 'false' }
+  - { schema: org.gnome.desktop.wm.preferences, key: button-layout, value: 'appmenu:minimize,maximize,close' }
+  - { schema: org.gnome.desktop.wm.preferences, key: focus-new-windows, value: smart }
+  - { schema: org.gnome.desktop.wm.preferences, key: num-workspaces, value: 3 }
+  - { schema: org.gnome.desktop.wm.preferences, key: raise-on-click, value: 'true' }
+  - { schema: org.gnome.desktop.background, key: picture-uri, value: 'file:///usr/share/backgrounds/darth-vader-01.jpg' }
+  - { schema: org.gnome.shell, key: favorite-apps, value: "['rhythmbox.desktop', 'org.gnome.Nautilus.desktop', 'firefox.desktop', 'org.gnome.Terminal.desktop']" }
+  - { schema: org.gnome.shell.extensions.auto-move-windows, key: application-list, value: "['atom.desktop:2', 'firefox.desktop:3']" }

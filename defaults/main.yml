@@ -1,0 +1,97 @@
+---
+# defaults file for dev-gnome-archlinux
+
+dotfiles_url: https://raw.githubusercontent.com/quocvu/dotfiles/master
+dotfiles:
+  - .aliases
+  - .editorconfig
+  - .gitconfig
+  - .npmrc
+  - .nvmrc
+
+gnome_extensions:
+  - { id: 6,   name: apps-menu@gnome-shell-extensions.gcampax.github.com }
+  - { id: 7,   name: drive-menu@gnome-shell-extensions.gcampax.github.com }
+  - { id: 8,   name: places-menu@gnome-shell-extensions.gcampax.github.com }
+  - { id: 16,  name: auto-move-windows@gnome-shell-extensions.gcampax.github.com }
+  - { id: 21,  name: workspace-indicator@gnome-shell-extensions.gcampax.github.com }
+  - { id: 307, name: dash-to-dock@micxgx.gmail.com }
+  - { id: 442, name: drop-down-terminal@gs-extensions.zzrough.org }
+  - { id: 570, name: todolist@bsaleil.org }
+  - { id: 657, name: ShellTile@emasab.it }
+  - { id: 685, name: redshift@tommie-lie.de }
+  - { id: 779, name: clipboard-indicator@tudmotu.com }
+  - { id: 906, name: sound-output-device-chooser@kgshank.net }
+
+unwanted_default_apps:
+  - empathy
+  - gnome-calculator
+  - gnome-contacts
+  - gnome-dictionary
+  - vifm
+
+utils:
+  - aws-cli
+  - conky
+  - less
+  - mc
+  - networkmanager
+  - p7zip
+  - ranger
+  - s3cmd
+  - tar
+  - tmux
+  - vim
+  - zip
+
+pacman_apps:
+  - atom
+  - beets
+  - baobab
+  - cfv
+  - dia
+  - easytag
+  - ffmpeg
+  - firefox
+  - geary
+  - gimp
+  - gnome-screensaver
+  - gprename
+  - handbrake
+  - handbrake-cli
+  - inkscape
+  - libreoffice-still
+  - imagemagick
+  - meld
+  - nautilus
+  - opera
+  - qbittorrent
+  - qbittorrent-nox
+  - rhythmbox
+  - seahorse
+  - shotwell
+  - speedcrunch
+  - vlc
+  - wicd
+  - wicd-gtk
+
+aur_apps:
+  - albert
+  - california-git
+  - dropbox
+  - foxitreader
+  - google-chrome
+  - gnome-commander
+  - ruby-jekyll
+  - simplenote-electron-bin
+  - solaar
+
+gnome_themes:
+  - arc
+  - arc-dark
+  - arc-darker
+  - flat-remix
+  - xenlism-minimalism
+
+gnome_icon_libs:
+  - numix

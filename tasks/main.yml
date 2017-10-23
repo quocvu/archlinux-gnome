@@ -1,0 +1,147 @@
+---
+# tasks file for dev-gnome-archlinux
+
+- name: install utils
+  pacman:
+    name: "{{ item }}"
+    state: latest
+    update_cache: yes
+  with_items: "{{ utils }}"
+  tags:
+    - gnome
+    - utils
+
+- name: install gnome
+  pacman:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - gnome
+    - gnome-shell
+    - gnome-tweak-tool
+  tags:
+    - gnome
+
+- name: auto start gnome
+  become: no
+  blockinfile:
+    path: /home/{{ ansible_user }}/.bash_profile
+    create: yes
+    block: |
+      if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]] && [[ -z $XDG_SESSION_TYPE ]]; then
+        XDG_SESSION_TYPE=wayland exec dbus-run-session gnome-session
+      fi
+  tags:
+    - gnome
+
+- name: remove some default apps that have better alternatives
+  pacman:
+    name: "{{ item }}"
+    state: absent
+  with_items: "{{ unwanted_default_apps }}"
+  tags:
+    - gnome
+
+- name: copy gnome extension installer
+  copy:
+    src: scripts/gnome-shell-extension-installer.sh
+    dest: /tmp/
+    mode: 0755
+  tags:
+    - gnome
+    - extensions
+
+- name: install gnome extensions
+  shell: /tmp/gnome-shell-extension-installer.sh --install --system --extension-id {{ item.id }}
+  with_items: "{{ gnome_extensions }}"
+  tags:
+    - gnome
+    - extensions
+
+# enable extension for the user running this ansible role
+- name: enable gnome extensions
+  become: no
+  shell: /usr/bin/gnome-shell-extension-tool -e {{ item.name }}
+  ignore_errors: yes
+  with_items: "{{ gnome_extensions }}"
+  tags:
+    - gnome
+    - extensions
+
+- name: install apps from pacman repos
+  pacman:
+    name: "{{ item }}"
+    state: latest
+  with_items: "{{ pacman_apps }}"
+  tags:
+    - gnome
+    - apps
+
+- name: install apps from aur
+  shell: yaourt -S --noconfirm {{ item }}
+  with_items: "{{ aur_apps }}"
+  tags:
+    - gnome
+    - apps
+
+- name: copy theme files
+  unarchive:
+    src: themes/{{ item }}.zip
+    dest: /usr/share/themes/
+  with_items: "{{ gnome_themes }}"
+  tags:
+    - theme
+    - gnome
+    - config
+
+- name: copy icons libs
+  unarchive:
+    src: icons/{{ item }}.zip
+    dest: /usr/share/icons/
+  with_items: "{{ gnome_icon_libs }}"
+  tags:
+    - theme
+    - gnome
+    - config
+
+- name: copy background pictures
+  copy:
+    src: backgrounds/
+    dest: /usr/share/backgrounds/
+    directory_mode: 0755
+  tags:
+    - config
+    - gnome
+
+- name: tweak gnome settings
+  become: no
+  gsettings:
+    schema: "{{ item.schema }}"
+    key: "{{ item.key }}"
+    value: "{{ item.value }}"
+  with_items: "{{ gnome_settings }}"
+  tags:
+    - config
+    - gnome
+
+- name: Download dotfiles
+  become: no
+  get_url:
+    url: "{{ dotfiles_url }}/{{ item }}"
+    dest: /home/{{ ansible_user }}/{{ item }}
+    mode: 0644
+  with_items: "{{ dotfiles }}"
+  tags:
+    - config
+    - qqq
+
+- name: autoload aliases
+  become: no
+  blockinfile:
+    path: /home/{{ ansible_user }}/.bashrc
+    create: yes
+    block: |
+      [[ -f ~/.aliases ]] && source ~/.aliases
+  tags:
+    - config
+    - qqq
