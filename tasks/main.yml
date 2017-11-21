@@ -84,6 +84,16 @@
     - gnome
     - apps
 
+- name: setup screensaver
+  copy:
+    src: config/etc-X11-xorg.conf.d-monitor.conf
+    dest: /etc/X11/xorg.conf.d/monitor.conf
+  tags:
+    - screensaver
+    - gnome
+    - config
+    - qqq
+
 - name: copy theme files
   unarchive:
     src: themes/{{ item }}.zip
@@ -133,7 +143,6 @@
   with_items: "{{ dotfiles }}"
   tags:
     - config
-    - qqq
 
 - name: autoload aliases
   become: no
@@ -144,4 +153,3 @@
       [[ -f ~/.aliases ]] && source ~/.aliases
   tags:
     - config
-    - qqq

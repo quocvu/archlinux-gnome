@@ -32,7 +32,7 @@ unwanted_default_apps:
 
 utils:
   - aws-cli
-  - conky
+  - colordiff
   - less
   - mc
   - networkmanager
@@ -72,8 +72,6 @@ pacman_apps:
   - shotwell
   - speedcrunch
   - vlc
-  - wicd
-  - wicd-gtk
 
 aur_apps:
   - albert
