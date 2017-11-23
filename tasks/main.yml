@@ -123,6 +123,15 @@
     - config
     - gnome
 
+- name: copy fonts
+  copy:
+    src: fonts/
+    dest: /usr/share/fonts/TTF
+    directory_mode: 0755
+  tags:
+    - config
+    - gnome
+
 - name: tweak gnome settings
   become: no
   gsettings:
