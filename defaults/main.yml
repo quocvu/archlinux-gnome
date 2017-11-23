@@ -33,6 +33,7 @@ unwanted_default_apps:
 utils:
   - aws-cli
   - colordiff
+  - jq
   - less
   - mc
   - networkmanager
