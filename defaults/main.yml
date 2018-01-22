@@ -1,14 +1,6 @@
 ---
 # defaults file for dev-gnome-archlinux
 
-dotfiles_url: https://raw.githubusercontent.com/quocvu/dotfiles/master
-dotfiles:
-  - .aliases
-  - .editorconfig
-  - .gitconfig
-  - .npmrc
-  - .nvmrc
-
 gnome_extensions:
   - { id: 6,   name: apps-menu@gnome-shell-extensions.gcampax.github.com }
   - { id: 7,   name: drive-menu@gnome-shell-extensions.gcampax.github.com }
@@ -31,19 +23,8 @@ unwanted_default_apps:
   - vifm
 
 utils:
-  - aws-cli
-  - colordiff
-  - jq
-  - less
-  - mc
   - networkmanager
-  - p7zip
   - ranger
-  - s3cmd
-  - tar
-  - tmux
-  - vim
-  - zip
 
 pacman_apps:
   - atom
@@ -52,7 +33,6 @@ pacman_apps:
   - cfv
   - dia
   - easytag
-  - ffmpeg
   - firefox
   - geary
   - gimp

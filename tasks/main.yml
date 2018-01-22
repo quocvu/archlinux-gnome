@@ -143,16 +143,6 @@
     - config
     - gnome
 
-- name: Download dotfiles
-  become: no
-  get_url:
-    url: "{{ dotfiles_url }}/{{ item }}"
-    dest: /home/{{ ansible_user }}/{{ item }}
-    mode: 0644
-  with_items: "{{ dotfiles }}"
-  tags:
-    - config
-
 - name: autoload aliases
   become: no
   blockinfile:
